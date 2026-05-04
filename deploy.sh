@@ -40,7 +40,7 @@ fi
 
 # Сборка фронтенда
 echo "🏗️ Сборка фронтенда..."
-yarn workspace frontend build
+NODE_OPTIONS="--max-old-space-size=4096" yarn workspace frontend build
 if [ $? -ne 0 ]; then
     echo "❌ Ошибка сборки фронтенда"
     exit 1

@@ -41,6 +41,7 @@ if %errorlevel% neq 0 (
 
 :: Сборка фронтенда
 echo 🏗️ Сборка фронтенда...
+set NODE_OPTIONS=--max-old-space-size=4096
 call yarn workspace frontend build
 if %errorlevel% neq 0 (
     echo ❌ Ошибка сборки фронтенда
