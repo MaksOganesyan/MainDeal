@@ -11,9 +11,9 @@
     },
     "scripts": {
         "start:windows": "start.bat",
-        "start:linux": "start.sh",
+        "start:linux": "chmod +x start.sh && ./start.sh",
         "deploy:windows": "deploy.bat",
-        "deploy:linux": "deploy.sh",
+        "deploy:linux": "chmod +x deploy.sh && ./deploy.sh",
         "zip": "zip -r archive.zip . -x \"*.git/*\" \"node_modules/*\" \".DS_Store\""
     }
 }
