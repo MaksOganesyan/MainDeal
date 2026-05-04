@@ -10,8 +10,10 @@
         "concurrently": "^8.2.2"
     },
     "scripts": {
-        "start": "start.bat",
-        "deploy": "./deploy.sh",
+        "start:windows": "start.bat",
+        "start:linux": "start.sh",
+        "deploy:windows": "deploy.bat",
+        "deploy:linux": "deploy.sh",
         "zip": "zip -r archive.zip . -x \"*.git/*\" \"node_modules/*\" \".DS_Store\""
     }
 }
