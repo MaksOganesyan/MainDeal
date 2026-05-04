@@ -14,6 +14,8 @@
         "start:linux": "chmod +x start.sh && ./start.sh",
         "deploy:windows": "deploy.bat",
         "deploy:linux": "chmod +x deploy.sh && ./deploy.sh",
+        "server:windows": "start-server.bat",
+        "server:linux": "chmod +x start-server.sh && ./start-server.sh",
         "zip": "zip -r archive.zip . -x \"*.git/*\" \"node_modules/*\" \".DS_Store\""
     }
 }
