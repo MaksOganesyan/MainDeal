@@ -49,19 +49,8 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-:: Сборка бэкенда (TypeScript)
-echo 🏗️ Сборка бэкенда...
-if exist backend\tsconfig.json (
-    cd backend
-    call npx tsc
-    if %errorlevel% neq 0 (
-        echo ❌ Ошибка сборки TypeScript бэкенда
-        cd ..
-        pause
-        exit /b 1
-    )
-    cd ..
-)
+:: Запуск бэкенда без TypeScript компиляции
+echo 🚀 Запуск бэкенда в продакшен режиме...
 
 :: Создание .env файла для сервера
 if not exist .env (
@@ -82,6 +71,6 @@ echo Нажмите Ctrl+C для остановки
 echo.
 
 :: Запускаем сервер в продакшен режиме
-cd backend && set PORT=5175 && npm start
+cd backend && set NODE_ENV=production && set PORT=5175 && npm start
 
 pause

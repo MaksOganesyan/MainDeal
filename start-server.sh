@@ -41,17 +41,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Сборка бэкенда (TypeScript)
-echo "🏗️ Сборка бэкенда..."
-cd backend
-if [ -f "tsconfig.json" ]; then
-    npx tsc
-    if [ $? -ne 0 ]; then
-        echo "❌ Ошибка сборки TypeScript бэкенда"
-        exit 1
-    fi
-fi
-cd ..
+# Запуск бэкенда без TypeScript компиляции
+echo "🚀 Запуск бэкенда в продакшен режиме..."
 
 # Создание .env файла для сервера
 if [ ! -f ".env" ]; then
@@ -72,4 +63,4 @@ echo "Нажмите Ctrl+C для остановки"
 echo ""
 
 # Запускаем сервер в продакшен режиме
-cd backend && PORT=5175 npm start
+cd backend && NODE_ENV=production PORT=5175 npm start
