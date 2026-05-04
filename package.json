@@ -1,0 +1,17 @@
+{
+    "name": "js-makedetail-fullstack",
+    "version": "1.0.0",
+    "private": true,
+    "workspaces": [
+        "frontend",
+        "backend"
+    ],
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    },
+    "scripts": {
+        "start": "start.bat",
+        "deploy": "./deploy.sh",
+        "zip": "zip -r archive.zip . -x \"*.git/*\" \"node_modules/*\" \".DS_Store\""
+    }
+}

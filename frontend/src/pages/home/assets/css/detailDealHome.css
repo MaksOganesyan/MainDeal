@@ -1,0 +1,708 @@
+/* HEAD */
+.head-section {
+  background-image: url('../../../../assets/images/picture/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* SCROLL BAR */
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #3b3b3b;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background-color: #429DFF;
+}
+
+/* CCONTENT */
+.css-text-gradient {
+  background: linear-gradient(45deg, #8ECAE6, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-text-silver {
+  background-image: linear-gradient(94deg, #3a3a3a 0%, #a4a4a4 18%, #7e7e7e 32%, #cecece 49%, #8f8f8f 62%, #516974 79%, #696969 95%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+
+}
+
+.css-deal-home {
+  position: relative;
+  width: 224px;
+  height: 46px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #fff;
+  cursor: pointer;
+  transition: filter 0.15s;
+  border-radius: 20px;
+  background:
+    linear-gradient(0deg, rgba(0, 28, 63, 0.4), rgba(0, 28, 63, 0.4)),
+    linear-gradient(93.46deg, #313C41 0%, #A4A4A4 18%, #7E7E7E 31.5%, #8099A5 49.19%, #8F8F8F 61.5%, #464646 78.5%, #385360 95.5%);
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  border: 2px solid transparent;
+  border-radius: 20px;
+}
+
+.css-deal-home::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(272.35deg, #37687F 2.1%, #A4A4A4 19.61%, #7E7E7E 32.74%, #CECECE 49.94%, #8F8F8F 61.91%, #464646 78.45%, #355462 94.98%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+.css-deal-home:hover,
+.css-deal-home:focus {
+  filter: brightness(1.07) drop-shadow(0 1px 6px #1282e980);
+  outline: none;
+}
+
+.css-deal-client {
+  position: relative;
+  width: 224px;
+  height: 46px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #fff;
+  cursor: pointer;
+  transition: filter 0.15s;
+  border-radius: 20px;
+  /* фон кнопки */
+  background:
+    linear-gradient(0deg, rgba(34, 116, 206, 0.16), rgba(34, 116, 206, 0.20)),
+    linear-gradient(90deg, #2d70bd 0%, #5191e1 100%);
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  border: 2px solid transparent;
+  border-radius: 20px;
+}
+
+.css-deal-client::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  padding: 2px;
+  /* рамка кнопки */
+  background: linear-gradient(270deg, #2274ce 0%, #3ab3ff 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.css-deal-client:hover,
+.css-deal-client:focus {
+  filter: brightness(1.08) drop-shadow(0 1px 6px #2d8bff80);
+  outline: none;
+}
+
+.css-navigation-button {
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.css-navigation-active {
+  border-bottom: 2px solid #60a5fa;
+}
+
+/* Бейджи для вкладок (кружки с цифрами) */
+.tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #3b3b3b;
+  transition: all 0.2s ease;
+}
+
+.tab-badge.active {
+  background-color: #1a7fae;
+}
+
+/* Активная вкладка с подчеркиванием */
+.css-navigation-active {
+  border-bottom: none;
+  position: relative;
+}
+
+/* Общее подчеркивание для всех активных вкладок */
+.css-navigation-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Большая линия под активной вкладкой */
+  width: 356px;
+  height: 2px;
+  background: #1a7fae;
+  border-radius: 3px;
+  transition: width 0.2s ease;
+}
+
+/* Кнопки навигации */
+.css-navigation-button {
+  color: #666;
+  font-weight: 500;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.css-navigation-button:hover {
+  color: #fff;
+}
+
+/* Активная вкладка - белый текст */
+li.css-navigation-active .css-navigation-button {
+  color: #fff;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 640px) {
+  .css-navigation-button {
+    font-size: 14px;
+  }
+
+  .tab-badge {
+    min-width: 22px;
+    height: 22px;
+    font-size: 11px;
+    padding: 0 5px;
+  }
+}
+
+/* Блок с иконками (вид: список, сетка, карта) */
+.orders-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 20px !important;
+  max-width: 100%;
+}
+
+.orders-toolbar__view {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 68px;
+}
+
+.orders-toolbar__button {
+  width: 24px;
+  height: 34px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  transition: all 0.2s ease;
+}
+
+.orders-toolbar__button i {
+  /* width: 24px; */
+  /* height: 24px; */
+  color: white;
+  font-size: 25px;
+}
+
+.orders-toolbar__button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.orders-toolbar__button:active {
+  opacity: 0.6;
+}
+
+.orders-toolbar__button.active i {
+  color: #007bff;
+}
+
+/* Блок сортировки */
+.orders-toolbar__sort {
+  position: relative;
+  display: inline-block;
+}
+
+.orders-toolbar__sort-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 1.9px 14px;
+  margin: 2px 0;
+  background: transparent;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.orders-toolbar__sort-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.orders-toolbar__sort-arrow {
+  margin-top: 2px;
+  font-size: 20px;
+  font-weight: 300;
+  transition: transform 0.2s ease;
+}
+
+.orders-toolbar__sort--open .orders-toolbar__sort-arrow {
+  transform: rotate(180deg);
+}
+
+.orders-toolbar__sort-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background: rgb(255, 255, 255);
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+  z-index: 100;
+  min-width: 220px;
+  overflow: hidden;
+}
+
+.orders-toolbar__sort--open .orders-toolbar__sort-menu {
+  display: block;
+}
+
+.orders-toolbar__sort-option {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: rgb(255, 255, 255);
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+  transition: 0.2s ease;
+}
+
+.orders-toolbar__sort-option:last-child {
+  border-bottom: none;
+}
+
+.orders-toolbar__sort-option:hover {
+  background: #f5f5f5;
+}
+
+.orders-toolbar__sort-option:active {
+  background: #e8e8e8;
+}
+
+.orders-toolbar__sort-option--active {
+  color: #007bff;
+  font-weight: 500;
+}
+
+/* ========== АДАПТИВНАЯ ВЕРСТКА ДЛЯ ВСЕХ УСТРОЙСТВ ========== */
+
+/* Для больших десктопов (1400px и выше) */
+@media (min-width: 1400px) {
+  .max-w-\[1300px\] {
+    max-width: 1400px;
+  }
+
+  .orders-toolbar {
+    gap: 30px;
+    /* единый левый край со всем контентом */
+    margin-left: 0;
+  }
+
+  .orders-toolbar__button {
+    padding: 3px 25px;
+  }
+
+  .orders-toolbar__button i {
+    font-size: 28px;
+  }
+
+  .orders-toolbar__sort-button {
+    font-size: 22px;
+    padding: 2px 18px;
+  }
+
+  .grid {
+    gap: 30px;
+  }
+}
+
+/* Десктопы (1024px - 1399px) */
+@media (max-width: 1399px) and (min-width: 1024px) {
+  .orders-toolbar {
+    gap: 25px;
+    /* единый левый край со всем контентом */
+    margin-left: 0;
+  }
+
+  .orders-toolbar__button {
+    padding: 3px 22px;
+  }
+
+  .orders-toolbar__sort-button {
+    font-size: 20px;
+  }
+
+  .grid {
+    gap: 24px;
+  }
+}
+
+/* Планшеты и ноутбуки (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+
+  /* Навигация */
+  .flex.justify-around {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .css-navigation-button {
+    font-size: 18px;
+  }
+
+  .tab-badge {
+    min-width: 26px;
+    height: 26px;
+    font-size: 13px;
+  }
+
+  .css-navigation-active::after {
+    /* Уменьшаем линию под размер экранов */
+    width: 316px;
+  }
+
+  /* Сортировка и иконки */
+  .orders-toolbar {
+    gap: 20px;
+  }
+
+  .orders-toolbar__button {
+    padding: 3px 18px;
+  }
+
+  .orders-toolbar__button i {
+    font-size: 22px;
+  }
+
+  .orders-toolbar__sort-button {
+    font-size: 18px;
+    padding: 1.5px 12px;
+  }
+
+  .orders-toolbar__sort-arrow {
+    font-size: 18px;
+  }
+
+  /* Сетка карточек */
+  .grid {
+    gap: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* Карточки */
+  .bg-\[#232327\] {
+    max-width: 220px;
+  }
+}
+
+/* Мобильные устройства (481px - 767px) */
+@media (max-width: 767px) and (min-width: 481px) {
+
+  /* Навигация */
+  .flex.justify-around {
+    gap: 10px;
+    flex-wrap: wrap;
+    /* Не добавляем дополнительный горизонтальный инсет — он задается снаружи (px-[156px]) */
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .css-navigation-button {
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  .tab-badge {
+    min-width: 22px;
+    height: 22px;
+    font-size: 11px;
+    padding: 0 5px;
+  }
+
+  .css-navigation-active::after {
+    /* Уменьшаем линию под планшеты/мобильные */
+    width: 276px;
+  }
+
+  /* Сортировка и иконки */
+  .orders-toolbar {
+    gap: 15px;
+    /* единый левый край со всем контентом */
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+
+  .orders-toolbar__view {
+    gap: 5px;
+  }
+
+  .orders-toolbar__button {
+    padding: 3px 12px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .orders-toolbar__button i {
+    font-size: 18px;
+  }
+
+  .orders-toolbar__sort-button {
+    font-size: 14px;
+    padding: 1px 10px;
+  }
+
+  .orders-toolbar__sort-arrow {
+    font-size: 14px;
+  }
+
+  .orders-toolbar__sort-menu {
+    min-width: 180px;
+  }
+
+  .orders-toolbar__sort-option {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  /* Сетка карточек */
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* Карточки */
+  .bg-\[#232327\] {
+    max-width: 100%;
+  }
+
+  .p-\[16px_17px_13px_17px\] {
+    padding: 12px 12px 10px 12px;
+  }
+
+  .font-semibold.text-white.text-\[17px\] {
+    font-size: 14px;
+  }
+
+  .text-\[14px\] {
+    font-size: 11px;
+  }
+
+  .text-white.text-\[20px\] {
+    font-size: 16px;
+  }
+
+  .py-\[9px\].px-\[15px\] {
+    padding: 6px 10px;
+  }
+
+  .w-\[28px\].h-\[28px\] {
+    width: 24px;
+    height: 24px;
+  }
+
+  .text-\[15px\] {
+    font-size: 12px;
+  }
+}
+
+/* Маленькие мобильные (до 480px) */
+@media (max-width: 480px) {
+
+  /* Навигация */
+  .flex.justify-around {
+    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .css-navigation-button {
+    font-size: 13px;
+    gap: 5px;
+  }
+
+  .tab-badge {
+    min-width: 20px;
+    height: 20px;
+    font-size: 10px;
+    padding: 0 4px;
+  }
+
+  /* Сортировка и иконки */
+  .orders-toolbar {
+    gap: 10px;
+    /* единый левый край со всем контентом */
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .css-navigation-active::after {
+    width: 216px;
+  }
+
+  .orders-toolbar__view {
+    gap: 3px;
+  }
+
+  .orders-toolbar__button {
+    padding: 2px 10px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .orders-toolbar__button i {
+    font-size: 16px;
+  }
+
+  .orders-toolbar__sort-button {
+    font-size: 12px;
+    padding: 1px 8px;
+  }
+
+  .orders-toolbar__sort-arrow {
+    font-size: 12px;
+  }
+
+  .orders-toolbar__sort-menu {
+    min-width: 160px;
+    left: -10px;
+  }
+
+  /* Сетка карточек */
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  /* Карточки */
+  .p-\[16px_17px_13px_17px\] {
+    padding: 10px 10px 8px 10px;
+  }
+
+  .font-semibold.text-white.text-\[17px\] {
+    font-size: 13px;
+  }
+
+  .text-white.text-\[20px\] {
+    font-size: 15px;
+  }
+
+  .py-\[9px\].px-\[15px\] {
+    padding: 5px 8px;
+  }
+
+  .w-\[28px\].h-\[28px\] {
+    width: 22px;
+    height: 22px;
+  }
+
+  .text-\[15px\] {
+    font-size: 11px;
+  }
+
+  /* Шапка */
+  .head-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .text-4xl {
+    font-size: 28px;
+  }
+
+  .text-\[32px\] {
+    font-size: 24px;
+  }
+
+  .text-\[20px\] {
+    font-size: 16px;
+  }
+
+  .gap-9 {
+    gap: 20px;
+  }
+
+  .min-w-\[220px\] {
+    min-width: auto;
+  }
+}
+
+/* Для горизонтальной ориентации на мобильных */
+@media (max-width: 767px) and (orientation: landscape) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .orders-toolbar {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,129 @@
+:root {
+  --main-color: #ffffff;
+  --secondary-lighter-color: #8ecae6;
+  --secondary-darker-color: #1a7fae;
+  --background-color: #2b2b2b;
+  --background-secondary-color: #3b3b3b;
+  --label-color: #858584;
+  --footer-text-color: #cccccc;
+
+  /* Проверить шрифты */
+  --main-family: "Roboto", "Arial", sans-serif;
+  --title-family: "Roboto Mono", "Arial", sans-serif;
+
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--main-family);
+}
+
+.header {
+  background-color: var(--background-color);
+}
+
+.header__wrapper {
+  margin: 2rem 15.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logotype {
+  display: flex;
+  gap: 1rem;
+}
+
+.logotype__textbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 11rem;
+}
+
+.logotype__textbox > p:nth-child(1) {
+  color: var(--main-color);
+  font-size: 1.6rem;
+}
+
+.logotype__textbox > p:nth-last-child(1) {
+  color: var(--secondary-lighter-color);
+  font-size: 1.2rem;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.6rem;
+  color: var(--main-color);
+}
+
+.navigation__item {
+  padding: 1.2rem 2rem;
+}
+
+.navigation__item-button,
+.user__button {
+  padding: 1.9rem 3rem;
+  background-color: var(--secondary-darker-color);
+  border-radius: 2rem;
+}
+
+.navigation__link {
+  text-align: center;
+}
+
+.navigation > .navigation__item:nth-child(3) > .navigation__link::before {
+  content: url(/chat_icon.svg);
+  margin-right: 1.2rem;
+}
+
+.navigation > .navigation__item-button > .navigation__link::before {
+  content: url(/user_icon.svg);
+  margin-right: 1.2rem;
+}
+
+.user__container,
+.user-avatar {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  font-size: 1.6rem;
+  color: var(--main-color);
+  font-weight: 600;
+}
+
+/* --- Оверлейное выпадающее меню (overlay dropdown) --- */
+.user-menu {
+  position: fixed;
+  top: 60px;
+  right: 30px;
+  background: var(--background-color);
+  border: 1px solid var(--background-secondary-color);
+  border-radius: 8px;
+  padding: 0.8rem 0;
+  min-width: 200px;
+  z-index: 1100; /* поверх всего: header, модалок и т.д. */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  font-size: 1.4rem;
+  color: var(--main-color);
+}
+
+.user-menu-item {
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.user-menu-item:hover {
+  background: var(--background-secondary-color);
+}
+
+/* 
+TODO  
+Плюсик к создать объявление/заказ
+*/

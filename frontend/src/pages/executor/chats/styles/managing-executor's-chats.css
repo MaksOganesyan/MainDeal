@@ -1,0 +1,355 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2b2b2b !important;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.wrapper-content {
+    padding-bottom: 20px;
+    min-height: 479px;
+    background-color: #3b3b3b;
+    width: 100%;
+    margin-bottom: 116px;
+}
+
+.content {
+    min-height: 479px;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+}
+
+.orders-toolbar {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    background-color: #3b3b3b;
+    z-index: 10;
+    position: relative;
+}
+
+.orders-toolbar__sort {
+    position: relative;
+    display: inline-block;
+}
+
+.orders-toolbar__sort-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    white-space: nowrap;
+    height: 42px;
+    transition: 0.3s ease;
+}
+
+.orders-toolbar__sort-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.orders-toolbar__sort-arrow {
+    margin-top: 3px;
+    font-size: 20px;
+    transition: transform 0.2s;
+}
+
+.orders-toolbar__sort--open .orders-toolbar__sort-arrow {
+    transform: rotate(180deg);
+}
+
+.orders-toolbar__sort-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: none;
+    min-width: 200px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.orders-toolbar__sort-menu.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.orders-toolbar__sort-option {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: white;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    color: #49454f;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s;
+}
+
+.orders-toolbar__sort-option:last-child {
+    border-bottom: none;
+}
+
+.orders-toolbar__sort-option:hover {
+    background: #f0f7ff;
+}
+
+.orders-toolbar__search {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+}
+
+.orders-toolbar__search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.orders-toolbar__search-input {
+    width: 100%;
+    padding: 10px 40px 10px 16px;
+    background: #ffffff;
+    border: none;
+    border-radius: 30px;
+    color: #49454f;
+    font-size: 16px;
+    transition: all 0.2s;
+    height: 42px;
+}
+
+.orders-toolbar__search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    background: #ffffff;
+}
+
+.orders-toolbar__search-input::placeholder {
+    color: #49454f;
+    font-size: 16px;
+}
+
+.orders-toolbar__search-icon {
+    position: absolute;
+    right: 14px;
+    color: #49454f;
+    pointer-events: none;
+    transition: color 0.2s;
+}
+
+.orders-toolbar__dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-height: 250px;
+    overflow-y: auto;
+    display: none;
+    z-index: 100;
+    margin-top: 4px;
+}
+
+.orders-toolbar__dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.orders-toolbar__dropdown::-webkit-scrollbar-thumb {
+    background: #49454f;
+    border-radius: 10px;
+}
+
+.orders-toolbar__dropdown.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.orders-toolbar__category-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    color: #49454f;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s;
+}
+
+.orders-toolbar__category-item:last-child {
+    border-bottom: none;
+}
+
+.orders-toolbar__category-item:hover {
+    background: #f0f7ff;
+}
+
+.orders-toolbar__category-item mark {
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #000;
+}
+
+.chats {
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+    overflow-y: auto;
+    flex: 1;
+    padding-right: 8px;
+}
+
+.chats::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chats::-webkit-scrollbar-thumb {
+    background: #2b2b2b;
+    border-radius: 10px;
+}
+
+.chat {
+    height: 122px;
+    padding: 8px 24px;
+    background-color: #2b2b2b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.chat:hover {
+    background-color: #2e2e2e;
+}
+
+.chat__header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.chat__users {
+    display: flex;
+    gap: 40px;
+}
+
+.chat__wrapper-user {
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+    margin-bottom: 4px;
+}
+
+.chat__id {
+    font-size: 13px;
+    font-weight: 500;
+    color: #858584;
+}
+
+.chat__profil {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chat__avatar-wrapper {
+    position: relative;
+    width: 31px;
+    height: 31px;
+}
+
+.chat__ava {
+    width: 31px;
+    height: 31px;
+    border-radius: 20px;
+}
+
+.chat__avatar-wrapper::after {
+    content: "М";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.chat__usname {
+    font-size: 16px;
+}
+
+.chat__order {
+    width: fit-content;
+    padding: 4px 12px;
+    border-radius: 8px;
+    background-color: #3b3b3b;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.chat__manager {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #858584;
+}
+
+.chat__data-time {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+}
+
+.chat__data {
+    font-size: 13px;
+    color: #858584;
+}
+
+.chat__circle {
+    width: 12px;
+    height: 12px;
+    flex-grow: 0;
+    background-color: #51add9;
+    border-radius: 50%;
+    margin-left: auto;
+}

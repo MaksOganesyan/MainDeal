@@ -1,0 +1,523 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:@localhost:3306/detail_deal"
+  relationMode = "prisma"
+}
+
+model User {
+  id                         Int            @id @default(autoincrement())
+  login                      String         @unique @db.VarChar(100)
+  password                   String         @db.VarChar(255)
+  fullName                   String?        @db.VarChar(255)
+  avatar                     String?        @db.VarChar(500)
+  email                      String         @unique @db.VarChar(255)
+  phone                      String?        @db.VarChar(20)
+  address                    String?        @db.VarChar(500)
+  region                     String?        @db.VarChar(100)
+  registeredAt               DateTime       @default(now()) @db.Timestamp(3)
+  isActive                   Boolean        @default(true)
+  isBlocked                  Boolean        @default(false)
+  blockedAt                  DateTime?      @db.Timestamp(3)
+  blockReason                String?        @db.Text
+  lastOnline                 DateTime       @default(now()) @db.Timestamp(3)
+  announcements              Announcement[]
+  chatMessages               ChatMessage[]
+  receivedMessages           ChatMessage[]  @relation("MessageRecipient")
+  managedChats               ChatRoom[]     @relation("ChatRoomManager")
+  complaintsCreated          Complaint[]    @relation("ComplaintAuthor")
+  complaintsHandled          Complaint[]    @relation("ComplaintHandler")
+  complaintsAbout            Complaint[]    @relation("ComplaintTarget")
+  dealResponses              DealResponse[]
+  dealsAsCustomer            Deal[]         @relation("CustomerDeals")
+  dealsAsExecutor            Deal[]         @relation("ExecutorDeals")
+  notifications              Notification[]
+  profile                    Profile?
+  reviews                    Review[]       @relation("ReviewAuthor")
+  receivedReviews            Review[]       @relation("ReviewTarget")
+  userrole                   userrole[]
+  chat_rooms_chatroommembers ChatRoom[]     @relation("chatroommembers")
+  chatRoomMembers           ChatRoomMembers[]
+  announcements_new         AnnouncementListing[] @relation("UserAnnouncements")
+  moderatedAnnouncements AnnouncementListing[] @relation("ModeratorAnnouncement")
+  ordersAsClient        OrderListing[]        @relation("ClientOrders")
+  ordersAsExecutor      OrderListing[]        @relation("ExecutorOrders")
+  moderatedOrders       OrderListing[]        @relation("ModeratorOrder")
+  responsesAsExecutor   Response[]            @relation("ExecutorResponses")
+  responsesAsClient     Response[]            @relation("ClientResponses")
+
+  @@index([email])
+  @@index([login])
+  @@map("users")
+}
+
+model Profile {
+  id              Int             @id @default(autoincrement())
+  userId          Int             @unique
+  companyName     String?         @db.VarChar(255)
+  specializations String?         @db.LongText
+  experience      Int?
+  description     String?         @db.Text
+  website         String?         @db.VarChar(500)
+  isPublic        Boolean         @default(true)
+  showContactInfo Boolean         @default(false)
+  rating          Float           @default(0)
+  totalReviews    Int             @default(0)
+  completedDeals  Int             @default(0)
+  createdAt       DateTime        @default(now()) @db.Timestamp(3)
+  updatedAt       DateTime        @default(now()) @updatedAt @db.Timestamp(3)
+  equipment       Equipment[]
+  portfolio       PortfolioItem[]
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model Equipment {
+  id          Int      @id @default(autoincrement())
+  profileId   Int
+  name        String   @db.VarChar(255)
+  type        String   @db.VarChar(100)
+  model       String?  @db.VarChar(255)
+  year        Int?
+  description String?  @db.Text
+  images      String?  @db.LongText
+  createdAt   DateTime @default(now()) @db.Timestamp(3)
+  profile     Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId], map: "equipment_profileId_fkey")
+  @@map("equipment")
+}
+
+model PortfolioItem {
+  id          Int      @id @default(autoincrement())
+  profileId   Int
+  title       String   @db.VarChar(255)
+  description String?  @db.Text
+  images      String?  @db.LongText
+  category    String?  @db.VarChar(100)
+  materials   String?  @db.LongText
+  createdAt   DateTime @default(now()) @db.Timestamp(3)
+  profile     Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId], map: "portfolio_items_profileId_fkey")
+  @@map("portfolio_items")
+}
+
+model Deal {
+  id             Int            @id @default(autoincrement())
+  customerId     Int
+  executorId     Int?
+  title          String         @db.VarChar(255)
+  description    String         @db.Text
+  category       String         @db.VarChar(100)
+  materials      String?        @db.LongText
+  specifications String?        @db.Text
+  drawings       String?        @db.LongText
+  budget         Float?
+  price          Float?
+  currency       String         @default("RUB") @db.VarChar(3)
+  deadline       DateTime?      @db.Timestamp(3)
+  estimatedTime  Int?
+  status         DealStatus     @default(ACTIVE)
+  location       String?        @db.VarChar(255)
+  isUrgent       Boolean        @default(false)
+  attachments    String?        @db.LongText
+  createdAt      DateTime       @default(now()) @db.Timestamp(3)
+  updatedAt      DateTime       @default(now()) @updatedAt @db.Timestamp(3)
+  completedAt    DateTime?      @db.Timestamp(3)
+  chatRoom       ChatRoom?
+  complaints     Complaint[]
+  responses      DealResponse[]
+  customer       User           @relation("CustomerDeals", fields: [customerId], references: [id])
+  executor       User?          @relation("ExecutorDeals", fields: [executorId], references: [id])
+  reviews        Review[]
+
+  @@index([customerId])
+  @@index([executorId])
+  @@index([status])
+  @@index([category])
+  @@map("deals")
+}
+
+model DealResponse {
+  id              Int            @id @default(autoincrement())
+  dealId          Int
+  executorId      Int
+  message         String         @db.Text
+  proposedPrice   Float?
+  estimatedDays   Int?
+  portfolioLinks  String?        @db.LongText
+  experience      String?        @db.Text
+  status          ResponseStatus @default(PENDING)
+  rejectionReason String?        @db.Text
+  createdAt       DateTime       @default(now()) @db.Timestamp(3)
+  updatedAt       DateTime       @default(now()) @updatedAt @db.Timestamp(3)
+  respondedAt     DateTime?      @db.Timestamp(3)
+  deal            Deal           @relation(fields: [dealId], references: [id], onDelete: Cascade)
+  executor        User           @relation(fields: [executorId], references: [id], onDelete: Cascade)
+
+  @@unique([dealId, executorId])
+  @@index([dealId])
+  @@index([executorId])
+  @@index([status])
+  @@map("deal_responses")
+}
+
+model ChatRoom {
+  id                    Int           @id @default(autoincrement())
+  dealId                Int?          @unique
+  announcementId        Int?          @unique
+  managerId             Int?
+  isActive              Boolean       @default(true)
+  createdAt             DateTime      @default(now()) @db.Timestamp(3)
+  updatedAt             DateTime      @default(now()) @updatedAt @db.Timestamp(3)
+  messages              ChatMessage[]
+  announcement          Announcement? @relation(fields: [announcementId], references: [id], onDelete: Cascade)
+  deal                  Deal?         @relation(fields: [dealId], references: [id], onDelete: Cascade)
+  manager               User?         @relation("ChatRoomManager", fields: [managerId], references: [id])
+  users_chatroommembers User[]        @relation("chatroommembers")
+  chatRoomMembers       ChatRoomMembers[]
+
+  @@index([managerId], map: "chat_rooms_managerId_fkey")
+  @@map("chat_rooms")
+}
+
+model ChatMessage {
+  id          Int         @id @default(autoincrement())
+  roomId      Int
+  authorId    Int
+  recipientId Int?
+  content     String      @db.Text
+  type        MessageType @default(TEXT)
+  attachments String?     @db.LongText
+  isBlocked   Boolean     @default(false)
+  blockReason String?     @db.Text
+  isRead      Boolean     @default(false)
+  createdAt   DateTime    @default(now()) @db.Timestamp(3)
+  author      User        @relation(fields: [authorId], references: [id])
+  recipient   User?       @relation("MessageRecipient", fields: [recipientId], references: [id])
+  room        ChatRoom    @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@index([roomId])
+  @@index([authorId])
+  @@index([recipientId], map: "chat_messages_recipientId_fkey")
+  @@map("chat_messages")
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  dealId    Int
+  authorId  Int
+  targetId  Int
+  rating    Int
+  comment   String?  @db.Text
+  pros      String?  @db.LongText
+  cons      String?  @db.LongText
+  createdAt DateTime @default(now()) @db.Timestamp(3)
+  author    User     @relation("ReviewAuthor", fields: [authorId], references: [id])
+  deal      Deal     @relation(fields: [dealId], references: [id])
+  target    User     @relation("ReviewTarget", fields: [targetId], references: [id])
+
+  @@index([authorId], map: "reviews_authorId_fkey")
+  @@index([dealId], map: "reviews_dealId_fkey")
+  @@index([targetId], map: "reviews_targetId_fkey")
+  @@map("reviews")
+}
+
+model Announcement {
+  id            Int       @id @default(autoincrement())
+  executorId    Int
+  title         String    @db.VarChar(255)
+  description   String    @db.Text
+  category      String    @db.VarChar(100)
+  priceFrom     Float?
+  priceTo       Float?
+  currency      String    @default("RUB") @db.VarChar(3)
+  estimatedDays Int?
+  region        String?   @db.VarChar(100)
+  location      String?   @db.VarChar(255)
+  images        String?   @db.LongText
+  attachments   String?   @db.LongText
+  isActive      Boolean   @default(true)
+  isUrgent      Boolean   @default(false)
+  isHidden      Boolean   @default(false)
+  views         Int       @default(0)
+  createdAt     DateTime  @default(now()) @db.Timestamp(3)
+  updatedAt     DateTime  @default(now()) @updatedAt @db.Timestamp(3)
+  executor      User      @relation(fields: [executorId], references: [id], onDelete: Cascade)
+  chatRooms     ChatRoom?
+
+  @@index([category])
+  @@index([region])
+  @@index([isActive, isUrgent])
+  @@index([executorId], map: "announcements_executorId_fkey")
+  @@map("announcements")
+}
+
+model Complaint {
+  id          Int              @id @default(autoincrement())
+  authorId    Int
+  targetId    Int
+  dealId      Int?
+  reason      String           @db.VarChar(255)
+  description String           @db.Text
+  evidence    String?          @db.LongText
+  status      ComplaintStatus  @default(PENDING)
+  handlerId   Int?
+  resolution  String?          @db.Text
+  action      ComplaintAction?
+  resolvedAt  DateTime?        @db.Timestamp(3)
+  createdAt   DateTime         @default(now()) @db.Timestamp(3)
+  updatedAt   DateTime         @default(now()) @updatedAt @db.Timestamp(3)
+  author      User             @relation("ComplaintAuthor", fields: [authorId], references: [id])
+  deal        Deal?            @relation(fields: [dealId], references: [id])
+  handler     User?            @relation("ComplaintHandler", fields: [handlerId], references: [id])
+  target      User             @relation("ComplaintTarget", fields: [targetId], references: [id])
+
+  @@index([status])
+  @@index([targetId])
+  @@index([authorId], map: "complaints_authorId_fkey")
+  @@index([dealId], map: "complaints_dealId_fkey")
+  @@index([handlerId], map: "complaints_handlerId_fkey")
+  @@map("complaints")
+}
+
+model Notification {
+  id        Int              @id @default(autoincrement())
+  userId    Int
+  type      NotificationType
+  title     String           @db.VarChar(255)
+  message   String           @db.Text
+  relatedId Int?
+  link      String?          @db.VarChar(500)
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now()) @db.Timestamp(3)
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
+
+model userrole {
+  id     Int           @id @default(autoincrement())
+  userId Int
+  role   userrole_role
+  users  User          @relation(fields: [userId], references: [id], onDelete: Cascade, map: "UserRole_userId_fkey")
+
+  @@unique([userId, role], map: "UserRole_userId_role_key")
+  @@index([userId], map: "UserRole_userId_idx")
+}
+
+model ChatRoomMembers {
+  id       Int      @id @default(autoincrement())
+  roomId   Int
+  userId   Int
+  joinedAt DateTime @default(now()) @db.Timestamp(3)
+  
+  room     ChatRoom @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([roomId, userId])
+  @@index([roomId])
+  @@index([userId])
+}
+model AnnouncementListing {
+  id            Int                      @id @default(autoincrement())
+  userId        Int                      @map("userId")
+  title         String                   @db.VarChar(255)
+  description   String?                  @db.Text
+  price         Decimal                  @db.Decimal(10, 2)
+  currency      String                   @default("RUB") @db.VarChar(3)
+
+  photos        Json?                    @map("photos")
+
+  status        AnnouncementStatus       @default(MODERATION)
+
+  city          String?                  @db.VarChar(100)
+  address       String?                  @db.VarChar(500)
+
+  deadlineDays  Int?                     @map("deadlineDays")
+  createdAt     DateTime                 @default(now()) @db.Timestamp(3)
+  publishedAt   DateTime?                @db.Timestamp(3)
+  expiresAt     DateTime?                @db.Date
+
+  views         Int                      @default(0)
+
+  moderatorId   Int?                     @map("moderatorId")
+  blockReason   String?                  @db.Text
+  moderatedAt   DateTime?                @db.Timestamp(3)
+
+  user          User                     @relation("UserAnnouncements", fields: [userId], references: [id], onDelete: Cascade)
+  moderator     User?                    @relation("ModeratorAnnouncement", fields: [moderatorId], references: [id])
+  orders        OrderListing[]
+  responses     Response[]
+
+  @@index([userId], map: "announcement_listings_user_id_idx")
+  @@index([status], map: "announcement_listings_status_idx")
+  @@index([city], map: "announcement_listings_city_idx")
+  @@index([createdAt], map: "announcement_listings_created_at_idx")
+  @@map("announcement_listings")
+}
+
+model OrderListing {
+  id            Int                     @id @default(autoincrement())
+  orderNumber   String                  @unique @db.VarChar(50)
+
+  announcementId Int                    @map("announcementId")
+  clientId      Int                     @map("clientId")
+  executorId    Int                     @map("executorId")
+
+  title         String                  @db.VarChar(255)
+  description   String?                 @db.Text
+
+  price         Decimal                  @db.Decimal(10, 2)
+  prepayment    Decimal                  @default(0) @db.Decimal(10, 2)
+  paidAmount    Decimal                  @default(0) @db.Decimal(10, 2)
+
+  status        OrderStatus             @default(AWAITING)
+
+  createdAt     DateTime                @default(now()) @db.Timestamp(3)
+  confirmedAt   DateTime?               @db.Timestamp(3)
+  startDate     DateTime?               @db.Date
+  deadlineDate  DateTime?               @db.Date
+  completedAt   DateTime?               @db.Timestamp(3)
+
+  isOverdue     Boolean                 @default(false)
+
+  clientReview  String?                 @db.Text
+  executorReview String?                @db.Text
+  clientRating  Int?                    @map("clientRating")
+  executorRating Int?                   @map("executorRating")
+
+  moderatorId   Int?                    @map("moderatorId")
+  cancelReason  String?                 @db.Text
+  adminNotes    String?                 @db.Text
+
+  announcement  AnnouncementListing     @relation(fields: [announcementId], references: [id], onDelete: Restrict)
+  client        User                    @relation("ClientOrders", fields: [clientId], references: [id], onDelete: Restrict)
+  executor      User                    @relation("ExecutorOrders", fields: [executorId], references: [id], onDelete: Restrict)
+  moderator     User?                   @relation("ModeratorOrder", fields: [moderatorId], references: [id])
+
+  @@index([clientId], map: "orders_client_id_idx")
+  @@index([executorId], map: "orders_executor_id_idx")
+  @@index([status], map: "orders_status_idx")
+  @@index([createdAt], map: "orders_created_at_idx")
+  @@index([deadlineDate], map: "orders_deadline_date_idx")
+  @@map("orders")
+}
+
+model Response {
+  id            Int                 @id @default(autoincrement())
+  announcementId Int                @map("announcementId")
+  executorId    Int                 @map("executorId")
+  clientId      Int                 @map("clientId")
+
+  message       String?             @db.Text
+  proposedPrice Decimal?                 @db.Decimal(10, 2)
+  estimatedDays Int?
+
+  status        ResponseStatus      @default(PENDING)
+
+  selectedAt    DateTime?           @db.Timestamp(3)
+  createdAt     DateTime            @default(now()) @db.Timestamp(3)
+
+  announcement  AnnouncementListing @relation(fields: [announcementId], references: [id], onDelete: Cascade)
+  executor      User                @relation("ExecutorResponses", fields: [executorId], references: [id], onDelete: Cascade)
+  client        User                @relation("ClientResponses", fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([announcementId], map: "responses_announcement_id_idx")
+  @@index([executorId], map: "responses_executor_id_idx")
+  @@index([clientId], map: "responses_client_id_idx")
+  @@index([status], map: "responses_status_idx")
+  @@map("responses")
+}
+
+enum AnnouncementStatus {
+  ACTIVE
+  MODERATION
+  BLOCKED
+  COMPLETED
+}
+
+enum OrderStatus {
+  AWAITING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  DISPUTE
+}
+
+enum DealStatus {
+  ACTIVE
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  DISPUTE
+}
+
+enum ResponseStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  WITHDRAWN
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  FILE
+  SYSTEM
+  AUTO_REPLY
+}
+
+enum ComplaintStatus {
+  PENDING
+  IN_REVIEW
+  RESOLVED
+  REJECTED
+}
+
+enum ComplaintAction {
+  WARNING
+  TEMPORARY_BAN
+  PERMANENT_BAN
+  ORDER_CANCELLED
+  NO_ACTION
+}
+
+enum NotificationType {
+  NEW_MESSAGE
+  NEW_DEAL
+  DEAL_ASSIGNED
+  DEAL_COMPLETED
+  NEW_REVIEW
+  COMPLAINT_CREATED
+  COMPLAINT_RESOLVED
+  SYSTEM
+}
+
+enum userrole_role {
+  CUSTOMER
+  EXECUTOR
+  MANAGER
+  ADMIN
+}
+
+// Алиасы для совместимости
+enum Role {
+  CUSTOMER
+  EXECUTOR
+  MANAGER
+  ADMIN
+}
+
+enum UserRole {
+  CUSTOMER
+  EXECUTOR
+  MANAGER
+  ADMIN
+}

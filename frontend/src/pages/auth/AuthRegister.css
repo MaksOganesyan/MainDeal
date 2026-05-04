@@ -1,0 +1,449 @@
+/* === ОБЩИЕ СТИЛИ === */
+:root {
+  --main-color: #ffffff;
+  --secondary-lighter-color: #8ecae6;
+  --secondary-darker-color: #1a7fae;
+  --background-color: #2b2b2b;
+  --background-secondary-color: #3b3b3b;
+  --label-color: #858584;
+  --footer-text-color: #cccccc;
+
+  --main-family: "Roboto", "Arial", sans-serif;
+  --title-family: "Roboto", "Arial", sans-serif;
+
+  font-size: 62.5%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background-color);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: var(--main-family);
+}
+
+.registration,
+.authorization {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  transition: width 1s ease;
+}
+
+.registration.active {
+  width: 0%;
+}
+
+.authorization.active {
+  width: 0%;
+}
+
+.registration {
+  width: 100%;
+}
+
+.registration__image,
+.authorization__image {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  cursor: default !important;
+  max-width: 100%;
+  height: auto;
+}
+
+.registration__image {
+  pointer-events: none;
+}
+
+.authorization__image {
+  pointer-events: none;
+}
+
+.registration__wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+  flex-wrap: wrap;
+}
+
+.registration__aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--main-color);
+  gap: 2rem;
+  min-width: 35rem;
+  flex-shrink: 0;
+}
+
+.registration__image-wrapper {
+  flex-shrink: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration__textbox {
+  gap: 0.8rem;
+}
+
+.registration__header {
+  font-size: 4rem;
+  font-family: var(--title-family);
+}
+
+.registration__description {
+  font-size: 2.2rem;
+  max-width: 32rem;
+  font-family: var(--main-family);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 35rem;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.form__field {
+  background-color: white;
+  font-size: 1.6rem;
+  color: var(--background-color);
+  padding: 1.2rem 2rem;
+  border: 0.1rem solid var(--label-color);
+  border-radius: 2rem;
+  width: 100%;
+  font-family: inherit;
+}
+
+.form__description {
+  font-size: 1.3rem;
+  color: var(--label-color);
+  font-family: inherit;
+}
+
+.form__group-radio {
+  display: flex;
+  gap: 3.2rem;
+  font-size: 1.6rem;
+}
+
+.form__radio {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--secondary-darker-color);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  margin-right: 0.5rem;
+  transition: border-color 0.2s ease;
+}
+
+.form__radio:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--secondary-darker-color);
+  z-index: 1;
+}
+
+.form__button {
+  font-size: 1.8rem;
+  padding: 1.05rem 0;
+  width: 100%;
+  border-radius: 2rem;
+  background: linear-gradient(
+    90deg,
+    var(--secondary-lighter-color),
+    var(--secondary-darker-color)
+  );
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.form__button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.registration__to-authorization,
+.authorization__to-registration {
+  display: flex;
+  font-size: 1.6rem;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.registration__to-authorization > button,
+.authorization__to-registration > button {
+  color: var(--secondary-lighter-color);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.authorization {
+  width: 100%;
+}
+
+.authorization__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9rem;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.authorization__aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--main-color);
+  gap: 2rem;
+  min-width: 35rem;
+  flex-shrink: 0;
+}
+
+.authorization__image-wrapper {
+  flex-shrink: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.authorization__textbox {
+  gap: 2rem;
+  max-width: 28rem;
+}
+
+.authorization__header {
+  font-size: 4rem;
+  font-family: var(--title-family);
+}
+
+.authorization__description {
+  font-size: 2.2rem;
+  font-family: var(--main-family);
+}
+
+.authorization__form > button {
+  margin-top: 3rem;
+}
+
+.form__alert {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.auth__wrapper {
+  display: flex;
+  background-color: var(--background-color);
+  padding-bottom: 1.6rem;
+}
+
+/* ===== НОВЫЕ ПРАВИЛА ДЛЯ СКРЫТИЯ КАРТИНОК ПРИ ЗУМЕ ===== */
+
+/* Способ 1: При уменьшении ширины окна (зум увеличивает эффективную ширину) */
+@media (max-width: 1000px) {
+  .registration__image-wrapper,
+  .authorization__image-wrapper {
+    display: none !important;
+  }
+  
+  .registration__wrapper,
+  .authorization__wrapper {
+    justify-content: center;
+    gap: 0;
+  }
+  
+  .registration__aside,
+  .authorization__aside {
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+/* Способ 2: При высоком разрешении экрана (зум увеличивает device-pixel-ratio) */
+@media (min-resolution: 1.3dppx), (min-resolution: 125dpi) {
+  .registration__image-wrapper,
+  .authorization__image-wrapper {
+    display: none !important;
+  }
+  
+  .registration__wrapper,
+  .authorization__wrapper {
+    justify-content: center;
+    gap: 0;
+  }
+  
+  .registration__aside,
+  .authorization__aside {
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+/* Способ 3: Комбинация условий для точного определения сильного зума */
+@media (max-width: 1200px) and (min-resolution: 1.1dppx) {
+  .registration__image-wrapper,
+  .authorization__image-wrapper {
+    display: none !important;
+  }
+  
+  .registration__wrapper,
+  .authorization__wrapper {
+    justify-content: center;
+    gap: 0;
+  }
+  
+  .registration__aside,
+  .authorization__aside {
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+/* Оригинальные медиа-запросы (оставляем как fallback) */
+@media (max-width: 900px) {
+  .registration__image-wrapper,
+  .authorization__image-wrapper {
+    display: none;
+  }
+  
+  .registration__wrapper {
+    justify-content: center;
+  }
+  
+  .registration__aside {
+    margin-left: 0;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .authorization__wrapper {
+    justify-content: center;
+    gap: 0;
+  }
+  
+  .authorization__aside {
+    margin-left: 0;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .registration__aside,
+  .authorization__aside {
+    min-width: auto;
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .form {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .registration__header,
+  .authorization__header {
+    font-size: 3rem;
+  }
+  
+  .registration__description,
+  .authorization__description {
+    font-size: 1.8rem;
+    max-width: 100%;
+  }
+  
+  .form__field {
+    font-size: 1.4rem;
+    padding: 1rem 1.6rem;
+  }
+  
+  .form__group-radio {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .registration__wrapper,
+  .authorization__wrapper {
+    justify-content: center;
+  }
+  
+  .registration__image-wrapper,
+  .authorization__image-wrapper {
+    max-width: 40%;
+  }
+  
+  .registration__image-wrapper img,
+  .authorization__image-wrapper img {
+    width: 100%;
+    height: auto;
+  }
+}
+/* Убираем белую полосу снизу */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+.auth__wrapper {
+  display: flex;
+  background-color: var(--background-color);
+  padding-bottom: 1.6rem;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Если белая полоса все еще есть - проверьте корневой элемент #root */
+#root {
+  background-color: var(--background-color);
+  min-height: 100vh;
+}
