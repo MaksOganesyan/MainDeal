@@ -221,7 +221,7 @@ const AuthRegister: React.FC = () => {
               <div className="registration__textbox">
                 <h2 className="registration__header">Регистрация</h2>
                 <p className="registration__description">
-                  Создайте аккаунт для доступа к платформе Detail Deal
+                  Создайте аккаунт для доступа к платформе MAIN DEAL
                 </p>
               </div>
 
@@ -357,7 +357,7 @@ const AuthRegister: React.FC = () => {
               <div className="authorization__textbox">
                 <h2 className="authorization__header">Вход</h2>
                 <p className="authorization__description">
-                  Войдите в свой аккаунт Detail Deal
+                  Войдите в свой аккаунт MAIN DEAL
                 </p>
               </div>
 

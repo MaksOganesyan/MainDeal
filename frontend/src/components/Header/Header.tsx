@@ -103,7 +103,7 @@ export const Header: React.FC = () => {
           <div className="logotype__textbox">
             <p className="logotype__text-title">
               <Link to={getHomeLink()} className="logo-link">
-                DETAIL DEAL
+                MAIN DEAL
               </Link>
             </p>
             <p className="logotype__text-description">

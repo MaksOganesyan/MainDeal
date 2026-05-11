@@ -128,7 +128,7 @@ export default function ExecutorAllOrdersPage() {
           <div className="nav-logo">
             <div className="logo-icon"></div>
             <div className="logo-text">
-              <h1>Detail Deal</h1>
+              <h1>MAIN DEAL</h1>
               <p>Онлайн-сервис по металлообработке</p>
             </div>
           </div>
@@ -342,7 +342,7 @@ export default function ExecutorAllOrdersPage() {
       <footer className="footer">
         <div className="footer-content">
           <div className="footer-section">
-            <h2>Detail Deal</h2>
+            <h2>MAIN DEAL</h2>
             <div className="footer-info">
               <p>Онлайн-сервис по металлообработке</p>
               <div className="social-links">

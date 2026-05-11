@@ -98,7 +98,7 @@ const DetailDealHomePage: React.FC = () => {
           <div className="flex flex-col w-full md:w-[548px] gap-6">
             <h1 className="css-text-gradient text-[32px] sm:text-[34px] md:text-[34px] lg:text-[32px] font-bold leading-[1.15] m-0 text-left mb-3">
               Добро пожаловать на<br />
-              <span className="text-4xl sm:text-5xl md:text-7xl font-bold mt-6 block">Detail Deal!</span>
+              <span className="text-4xl sm:text-5xl md:text-7xl font-bold mt-6 block">MAIN DEAL!</span>
             </h1>
             <p className="css-text-gradient font-bold mb-7 lg:max-w-[420px] md:max-w-[420px]" style={{ fontSize: isMobile ? 16 : 20, fontWeight: 700, lineHeight: 1.36 }}>
               Профессиональная платформа для поиска исполнителей и заказчиков в сфере металлообработки

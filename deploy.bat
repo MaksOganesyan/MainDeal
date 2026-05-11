@@ -2,10 +2,10 @@
 chcp 65001 >nul
 setlocal EnableDelayedExpansion
 
-:: Detail Deal - Скрипт для деплоя проекта (Windows)
+:: MAIN DEAL - Скрипт для деплоя проекта (Windows)
 :: Используется для командной работы и продакшена
 
-echo 🚀 Деплоим Detail Deal...
+echo 🚀 Деплоим MAIN DEAL...
 echo ================================
 
 :: Проверяем наличие yarn

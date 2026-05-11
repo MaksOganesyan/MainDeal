@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
     <footer className="footer">
       <div className="footer__wrapper">
         <div className="footer__block">
-          <h3 className="footer__title">Detail Deal</h3>
+          <h3 className="footer__title">MAIN DEAL</h3>
           <p className="footer__text">Онлайн-сервис по металлообработке</p>
           <p className="footer__text">Подпишитесь на наши соц. сети</p>
           <div className="footer__socials">
