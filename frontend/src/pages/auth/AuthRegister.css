@@ -203,6 +203,25 @@ body {
   margin-top: 1rem;
 }
 
+.registration__legal {
+  font-size: 1.2rem;
+  color: var(--label-color);
+  text-align: center;
+  max-width: 35rem;
+  line-height: 1.4;
+}
+
+.registration__link {
+  color: var(--secondary-lighter-color);
+  text-decoration: underline;
+}
+
+.registration__copyright {
+  font-size: 1.2rem;
+  color: var(--label-color);
+  text-align: center;
+}
+
 .registration__to-authorization > button,
 .authorization__to-registration > button {
   color: var(--secondary-lighter-color);
@@ -263,6 +282,25 @@ body {
 
 .authorization__form > button {
   margin-top: 3rem;
+}
+
+.authorization__legal {
+  font-size: 1.2rem;
+  color: var(--label-color);
+  text-align: center;
+  max-width: 35rem;
+  line-height: 1.4;
+}
+
+.authorization__link {
+  color: var(--secondary-lighter-color);
+  text-decoration: underline;
+}
+
+.authorization__copyright {
+  font-size: 1.2rem;
+  color: var(--label-color);
+  text-align: center;
 }
 
 .form__alert {

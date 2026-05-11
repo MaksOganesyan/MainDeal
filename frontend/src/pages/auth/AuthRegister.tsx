@@ -329,6 +329,23 @@ const AuthRegister: React.FC = () => {
                   Войти
                 </button>
               </div>
+
+              <div className="registration__legal">
+                <p>
+                  Нажимая «Зарегистрироваться», вы подтверждаете, что принимаете{" "}
+                  <a href="/terms" className="registration__link">
+                    правила сервиса
+                  </a>{" "}
+                  и ознакомились с{" "}
+                  <a href="/privacy" className="registration__link">
+                    политикой конфиденциальности
+                  </a>
+                </p>
+              </div>
+
+              <div className="registration__copyright">
+                <p>© 2026 ООО «MainDeal»</p>
+              </div>
             </div>
           </div>
         </section>
@@ -387,11 +404,28 @@ const AuthRegister: React.FC = () => {
                 </button>
               </form>
 
+              <div className="authorization__legal">
+                <p>
+                  Нажимая «Дальше», вы подтверждаете, что принимаете{" "}
+                  <a href="/terms" className="authorization__link">
+                    правила сервиса
+                  </a>{" "}
+                  и ознакомились с{" "}
+                  <a href="/privacy" className="authorization__link">
+                    политикой конфиденциальности
+                  </a>
+                </p>
+              </div>
+
               <div className="authorization__to-registration">
                 <p>Нет аккаунта?</p>
                 <button type="button" onClick={toggleForm} disabled={isLoading}>
                   Зарегистрироваться
                 </button>
+              </div>
+
+              <div className="authorization__copyright">
+                <p>© 2026 ООО «MainDeal»</p>
               </div>
             </div>
 
