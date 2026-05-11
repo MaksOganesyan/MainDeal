@@ -12,6 +12,7 @@
     "scripts": {
         "start:windows": "start.bat",
         "start:linux": "chmod +x start.sh && ./start.sh",
+        "start:linux-auto": "chmod +x start-production.sh && ./start-production.sh",
         "start:production": "chmod +x start-production.sh && ./start-production.sh",
         "deploy:windows": "deploy.bat",
         "deploy:linux": "chmod +x deploy.sh && ./deploy.sh",
