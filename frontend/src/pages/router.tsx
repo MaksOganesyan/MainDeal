@@ -52,6 +52,10 @@ import { customerProfile as CustomerProfile } from "./customer/customerProfile";
 // Карточка заказа
 import OrderCardDet from "./ordercarddet/OrderCardDet";
 
+// Правовые страницы
+import PrivacyPage from "./legal/PrivacyPage";
+import TermsPage from "./legal/TermsPage";
+
 import { PUBLIC_PAGES } from "@/config/pages/public.config";
 
 export const router = createBrowserRouter([
@@ -79,6 +83,16 @@ export const router = createBrowserRouter([
       {
         path: "hidden/ordersCustomer",
         element: <AllOrdersCustomer />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "privacy",
+        element: <PrivacyPage />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "terms",
+        element: <TermsPage />,
         errorElement: <ErrorBoundary />,
       },
     ],
