@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
         {/* Реквизиты + подписка */}
         <div className="footer__block">
           <h3 className="footer__title">Контакты</h3>
-          <p className="footer__text">ИП Оганесян Максим Романович</p>
+          <p className="footer__text">ИП Иванов Иван Иванович</p>
           <p className="footer__text">ИНН: 000000000000</p>
           <p className="footer__text">ОГРНИП: 000000000000000</p>
           <p className="footer__text">Адрес: Россия, г. Москва</p>

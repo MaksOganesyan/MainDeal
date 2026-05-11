@@ -115,3 +115,5 @@ archive.zip
 
 # Vite
 /frontend/.vite/
+
+*.pdf
