@@ -13,7 +13,20 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       }
+    },
+    hmr: {
+      overlay: false
     }
+  },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      '@mui/material',
+      '@mui/icons-material',
+      'react-router-dom',
+      '@tanstack/react-query'
+    ]
   },
   build: {
     sourcemap: false,
