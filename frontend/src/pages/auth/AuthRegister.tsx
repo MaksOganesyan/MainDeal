@@ -36,6 +36,8 @@ const AuthRegister: React.FC = () => {
 
   const [blockTimer, setBlockTimer] = useState(5);
 
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+
   const navigate = useNavigate();
 
   // ========== ДОБАВИТЬ КОД ДЛЯ СКРЫТИЯ КАРТИНОК ПРИ ЗУМЕ ==========
@@ -81,9 +83,14 @@ const AuthRegister: React.FC = () => {
     setBlockTimer(5);
   };
 
+  const resetAgreement = () => {
+    setAgreedToTerms(false);
+  };
+
   const toggleForm = () => {
     setIsLogin(!isLogin);
     resetBlock();
+    resetAgreement();
     setEmail("");
     setLogin("");
     setPassword("");
@@ -189,8 +196,8 @@ const AuthRegister: React.FC = () => {
       toast.error("Подтвердите пароль");
       return;
     }
-    if (password !== confirmPassword) {
-      toast.error("Пароли не совпадают");
+    if (!agreedToTerms) {
+      toast.error("Необходимо принять правила сервиса и политику конфиденциальности");
       return;
     }
 
@@ -307,6 +314,27 @@ const AuthRegister: React.FC = () => {
                   </label>
                 </div>
 
+                <div className="form__group-checkbox">
+                  <input
+                    className="form__checkbox"
+                    type="checkbox"
+                    id="agree-terms"
+                    checked={agreedToTerms}
+                    onChange={(e) => setAgreedToTerms(e.target.checked)}
+                    disabled={isBlocked}
+                  />
+                  <label htmlFor="agree-terms">
+                    Я согласен с{" "}
+                    <a href="/terms" className="registration__link" onClick={(e) => e.stopPropagation()}>
+                      правилами сервиса
+                    </a>{" "}
+                    и{" "}
+                    <a href="/privacy" className="registration__link" onClick={(e) => e.stopPropagation()}>
+                      политикой конфиденциальности
+                    </a>
+                  </label>
+                </div>
+
                 {isBlocked && (
                   <div className="form__alert">
                     Форма заблокирована. Попробуйте снова через {blockTimer}{" "}
@@ -317,7 +345,7 @@ const AuthRegister: React.FC = () => {
                 <button
                   className="form__button"
                   type="submit"
-                  disabled={isLoading || isBlocked}
+                  disabled={isLoading || isBlocked || !agreedToTerms}
                 >
                   {isLoading ? "Загрузка..." : "Создать аккаунт"}
                 </button>

@@ -146,6 +146,56 @@ body {
   font-size: 1.6rem;
 }
 
+.form__group-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1.4rem;
+  color: var(--label-color);
+}
+
+.form__group-checkbox label {
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.form__checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--secondary-darker-color);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  margin-top: 2px;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.form__checkbox:checked {
+  background-color: var(--secondary-darker-color);
+}
+
+.form__checkbox:checked::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.form__checkbox:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .form__radio {
   appearance: none;
   -webkit-appearance: none;
