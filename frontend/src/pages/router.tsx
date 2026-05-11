@@ -55,6 +55,14 @@ import OrderCardDet from "./ordercarddet/OrderCardDet";
 // Правовые страницы
 import PrivacyPage from "./legal/PrivacyPage";
 import TermsPage from "./legal/TermsPage";
+import CookiePage from "./legal/CookiePage";
+import OfferPage from "./legal/OfferPage";
+import RefundPage from "./legal/RefundPage";
+import SlaPage from "./legal/SlaPage";
+import PlacementPage from "./legal/PlacementPage";
+import ChatRulesPage from "./legal/ChatRulesPage";
+import CopyrightPage from "./legal/CopyrightPage";
+import SecurityPage from "./legal/SecurityPage";
 
 import { PUBLIC_PAGES } from "@/config/pages/public.config";
 
@@ -93,6 +101,46 @@ export const router = createBrowserRouter([
       {
         path: "terms",
         element: <TermsPage />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "cookie",
+        element: <CookiePage />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "offer",
+        element: <OfferPage />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "refund",
+        element: <RefundPage />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "sla",
+        element: <SlaPage />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "placement",
+        element: <PlacementPage />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "chat-rules",
+        element: <ChatRulesPage />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "copyright",
+        element: <CopyrightPage />,
+        errorElement: <ErrorBoundary />,
+      },
+      {
+        path: "security",
+        element: <SecurityPage />,
         errorElement: <ErrorBoundary />,
       },
     ],

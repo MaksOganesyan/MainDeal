@@ -6,6 +6,14 @@ class PublicPages {
   PLANS = "/plans";
   PRIVACY = "/privacy";
   TERMS = "/terms";
+  COOKIE = "/cookie";
+  OFFER = "/offer";
+  REFUND = "/refund";
+  SLA = "/sla";
+  PLACEMENT = "/placement";
+  CHAT_RULES = "/chat-rules";
+  COPYRIGHT = "/copyright";
+  SECURITY = "/security";
 }
 
 export const PUBLIC_PAGES = new PublicPages();

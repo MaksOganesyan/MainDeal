@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // ← Link удалён!
+import { Link, useNavigate } from "react-router-dom";
 import "../normalize.css";
 import "./Footer.css";
 
@@ -20,6 +20,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="footer__wrapper">
+        {/* Бренд + соцсети */}
         <div className="footer__block">
           <h3 className="footer__title">MAIN DEAL</h3>
           <p className="footer__text">Онлайн-сервис по металлообработке</p>
@@ -48,6 +49,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
+        {/* Навигация */}
         <div className="footer__block">
           <h3 className="footer__title">Страницы</h3>
           <button
@@ -72,28 +74,66 @@ export const Footer: React.FC = () => {
           </button>
         </div>
 
+        {/* Документы */}
         <div className="footer__block">
-          <h3 className="footer__title">Заинтересовались?</h3>
-          <p className="footer__text">
-            Оставьте свою электронную почту и подпишитесь на нашу рассылку,
-            чтобы всегда быть в курсе наших новостей
-          </p>
-          <form
-            className="footer__form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert("Функционал подписки — в разработке");
-            }}
-          >
-            <input
-              type="email"
-              name="email"
-              placeholder="Введите свой email"
-              required
-            />
-            <button type="submit">Подписаться</button>
-          </form>
+          <h3 className="footer__title">Документы</h3>
+          <Link to="/privacy" className="footer__link">Политика конфиденциальности</Link>
+          <Link to="/terms" className="footer__link">Пользовательское соглашение</Link>
+          <Link to="/cookie" className="footer__link">Политика cookie</Link>
+          <Link to="/offer" className="footer__link">Оферта на платные услуги</Link>
+          <Link to="/refund" className="footer__link">Политика возвратов</Link>
+          <Link to="/sla" className="footer__link">SLA</Link>
+          <Link to="/placement" className="footer__link">Правила размещения</Link>
+          <Link to="/chat-rules" className="footer__link">Правила чата</Link>
+          <Link to="/copyright" className="footer__link">Правообладателям</Link>
+          <Link to="/security" className="footer__link">Безопасность аккаунта</Link>
         </div>
+
+        {/* Реквизиты + подписка */}
+        <div className="footer__block">
+          <h3 className="footer__title">Контакты</h3>
+          <p className="footer__text">ИП Оганесян Максим Романович</p>
+          <p className="footer__text">ИНН: 000000000000</p>
+          <p className="footer__text">ОГРНИП: 000000000000000</p>
+          <p className="footer__text">Адрес: Россия, г. Москва</p>
+          <p className="footer__text">
+            Email:{" "}
+            <a href="mailto:support@maindeal.ru" className="footer__external-link">
+              support@maindeal.ru
+            </a>
+          </p>
+          <p className="footer__text">
+            Телефон:{" "}
+            <a href="tel:+78000000000" className="footer__external-link">
+              8 (800) 000-00-00
+            </a>
+          </p>
+
+          <div className="footer__subscribe">
+            <p className="footer__text">
+              Подпишитесь на рассылку:
+            </p>
+            <form
+              className="footer__form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                alert("Функционал подписки — в разработке");
+              }}
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="Введите email"
+                required
+              />
+              <button type="submit">Подписаться</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div className="footer__bottom">
+        <p>© 2026 ООО «MainDeal». Все права защищены.</p>
       </div>
     </footer>
   );
